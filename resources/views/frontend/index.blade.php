@@ -12,9 +12,27 @@
                 </div>
             </div>
         </header>
+        <!-- Category Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    @foreach($categories as $category)
+                        <a class="col mb-5" href="{{route('items.category',$category->id)}}">
+                            <div class="card text-bg-dark">
+                                <img src="{{$category->image}}" class="card-img" alt="...">
+                                <div class="card-img-overlay">
+                                <h5 class="card-title">{{$category->name}}</h5>                                
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </section>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
+                <h1 class="text-center mb-5">Products</h1>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach($items as $item)   
                         <div class="col mb-5">
@@ -32,7 +50,7 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('front.show',$->id)}}">View options</a></div>
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('front.show',$item->id)}}">View options</a></div>
                                 </div>
                             </div>    
                         </div>
