@@ -10,31 +10,56 @@
             {{csrf_field()}}
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" name="name" id="name" placeholder="Enter Name">
+                @if($errors->has('name'))
+                    <div class="invalid-feedback">{{$errors->first('name')}}</div>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
-            </div>
-            <div class="mb-3">
-                <label for="email_verified_at" class="form-label">Verify Email address</label>
-                <input type="email" class="form-control" name="email_verified_at" id="email_verified_at" placeholder="name@example.com">
+                <input type="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" name="email" id="email" placeholder="name@example.com">
+                @if($errors->has('email'))
+                    <div class="invalid-feedback">{{$errors->first('email')}}</div>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Phone">
+                <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' : ''}}" name="phone" id="phone" placeholder="Enter Phone">
+                @if($errors->has('phone'))
+                    <div class="invalid-feedback">{{$errors->first('name')}}</div>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address">
+                <input type="text" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}" name="address" id="address" placeholder="Enter Address">
+                @if($errors->has('address'))
+                    <div class="invalid-feedback">{{$errors->first('address')}}</div>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+                <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" name="password" id="password" placeholder="Enter Password">
+                @if($errors->has('password'))
+                    <div class="invalid-feedback">{{$errors->first('password')}}</div>
+                @endif
+            </div>
+            <div class="mb-3">
+                <label for="cmfpassword" class="form-label">Comfirm Password</label>
+                <input type="password" class="form-control {{$errors->has('cmfpassword') ? 'is-invalid' : ''}}" name="cmfpassword" id="cmfpassword" placeholder="Enter Password">
+                @if($errors->has('cmfpassword'))
+                    <div class="invalid-feedback">{{$errors->first('cmfpassword')}}</div>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="role" class="form-label">Role</label>
-                <input type="text" class="form-control" name="role" id="role" placeholder="Enter Role">
+                <select class="form-select {{$errors->has('role') ? 'is-invalid' : ''}}" name="role" id="role" aria-label="Select Role">
+                    <option selected>Select Role</option>
+                    <option value="1">Admin</option>
+                    <option value="2">User</option>
+                </select>
+                @if($errors->has('role'))
+                    <div class="invalid-feedback">{{$errors->first('role')}}</div>
+                @endif
             </div>
             <div class="d-grid gap-2">
                 <button class="btn btn-primary" type="submit">Save</button>

@@ -14,24 +14,30 @@
                 Payments DataTable
             </div>
             <div class="card-body">
-                <table id="datatablesSimple">
+                <table id="" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Payment Name</th>
                             <th>Image</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Payment Name</th>
                             <th>Image</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
-                    <tbody>
+                    <tbody id="payment_tbody">
                         @foreach($payments as $payment)
                         <tr>
                             <td>{{$payment->name}}</td>
-                            <td>{{$payment->image}}</td>                                            
+                            <td><img src="{{$payment->image}}" alt="" class="w-25 h-25"></td>     
+                            <td>
+                                <button type="" class="btn btn-sm btn-warning">Edit</button>
+                                <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$payment->id}}">Delete</button>
+                            </td>                                       
                         </tr>
                         @endforeach
                     </tbody>
@@ -39,4 +45,43 @@
             </div>
         </div>
     </div>
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           Are you sure?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <form action="" method="POST" id="deleteForm">
+                {{csrf_field()}}
+                {{method_field('delete')}}
+                <button type="submit" class="btn btn-danger">Yes</button>
+            </form>            
+        </div>
+        </div>
+    </div>
+    </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $('#payment_tbody').on('click','.delete',function(){
+            // alert('hi');
+
+            $('#deleteModal').modal('show');
+
+           let id=$(this).data('id');
+            // console.log(id);
+            
+            $('#deleteForm').porp('action', 'payments/' + id);
+        })
+    })
+</script>
 @endsection

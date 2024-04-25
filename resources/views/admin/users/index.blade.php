@@ -19,22 +19,20 @@
                         <tr>
                             <th>Nmae</th>
                             <th>Email</th>
-                            <th>Comfirmed Email</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Password</th>
                             <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
-                    <tr>
-                    <th>Nmae</th>
+                        <tr>
+                            <th>Nmae</th>
                             <th>Email</th>
-                            <th>Comfirmed Email</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Password</th>
                             <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -42,11 +40,15 @@
                         <tr>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td></td>
                             <td>{{($user->phone)}}</td>
                             <td>{{($user->address)}}</td>
-                            <td>{{($user->password)}}</td>
-                            <td>{{($user->role)}}</td>
+                            <td>@if($user->role == 1)
+                                    Admin
+                                @elseif($user->role == 2)
+                                    User
+                                @endif
+                            </td>
+                            <td></td>
                         </tr>
                         @endforeach
                     </tbody>

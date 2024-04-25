@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Http\Requests\PaymentRequest;
 
 class PaymentController extends Controller
 {
@@ -29,7 +30,7 @@ class PaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PaymentRequest $request)
     {
         // dd($request);
         $payments = Payment::create($request->all());
@@ -73,6 +74,9 @@ class PaymentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        echo $id;
+        // $payment=Payment::find($id);
+        // $payment->delete();
+        // return redirect()->route('backend.payments.index');
     }
 }
