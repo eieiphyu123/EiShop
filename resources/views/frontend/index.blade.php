@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="text-center">
-                                                <button class="btn btn-outline-dark mt-auto addToCart" data-id="{{$item->id}}" data-name="{{$item->name}}" data-price="{{$item->price}}">Add to Cart</button>
+                                                <button class="btn btn-outline-dark mt-auto addToCart" data-id="{{$item->id}}" data-codeno="{{$item->codeNo}}" data-name="{{$item->name}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">Add to Cart</button>
                                             </div>
                                         </div>
                                     </div>                                    

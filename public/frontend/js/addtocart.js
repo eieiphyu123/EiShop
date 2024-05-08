@@ -6,12 +6,14 @@ $(document).ready(function(){
         // alert('hello');
         let item_id=$(this).data('id');
         let item_name=$(this).data('name');
+        let item_codeno=$(this).data('codeno');
         let item_price=$(this).data('price');
         let item_discount=$(this).data('discount');
-        // console.log(item_id,item_name,item_price);
+        console.log(item_id,item_name,item_price,item_codeno,item_discount);
         let itemObj={
             id: item_id,
             name: item_name,
+            codeno: item_codeno,
             price: item_price,
             discount: item_discount,
             qty:1
@@ -73,22 +75,25 @@ $(document).ready(function(){
             let n=1;
             let total=0;
             $.each(itemArray, function(i,v){
+                let discountPrice = v.price - ((v.discount/100)*v.price);
+                // console.log(discountPrice);
                 data += `<tr>
-                            <td>${n++}</td>
+                            <td>${n++}</td>                            
+                            <td>${v.codeno}</td>
                             <td>${v.name}</td>
                             <td>${v.price}</td>
-                            <td>${v.discount}</td>
+                            <td>${v.discount}%</td>
                             <td>
                             <button class="min" data-index="${i}"> - </button>
                             ${v.qty}
                             <button class="max" data-index="${i}"> + </button>
                             </td>
-                            <td>${v.qty * v.price} MMk </td>
+                            <td>${v.qty * discountPrice} MMk </td>
                         </tr>`;
-                total+=v.qty*v.price;
+                total+=v.qty*discountPrice;
             })
             data += `<tr>
-                        <td colspan="4">Total</td>
+                        <td colspan="6"><b>Total</b></td>
                         <td>${total} MMK</td>
                    </tr>` ;  
                    $('#tbody').html(data);

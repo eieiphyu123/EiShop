@@ -16,30 +16,21 @@
             <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Items DataTable
+                My shopping Cart
             </div>
             <div class="card-body">
-                <table id="" class="table table-bordered">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>codeNo</th>
-                            <th>Name</th>
+                            <th>No</th>
+                            <th>codeNo</th> 
+                            <th>Name</th>                                                       
                             <th>Price</th>
                             <th>Discount</th>
-                            <th>Action</th>
-                            <th>Total</th>
+                            <th>Qty</th>
+                            <th>Amount</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                            <th>codeNo</th>
-                            <th>Nmae</th>
-                            <th>Price</th>
-                            <th>Discount</th>
-                            <th>Action</th>
-                            <th>Total</th>
-                        </tr>
-                    </tfoot>
                     <tbody id="tbody">
                         
                     </tbody>
