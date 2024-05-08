@@ -31,4 +31,10 @@ class FrontendController extends Controller
       // dd($item);
       return view('frontend.shop_item',compact('item'));
    }
+
+   public function checkout()
+{
+   
+    return view('frontend.checkout');
+}
 }

@@ -70,7 +70,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <select class="form-select {{$errors->has('category_id') ?  'is-invalid' :''}}" name="category_id">                        
+                    <select class="form-select {{$errors->has('category_id') ? 'is-invalid' :''}}" name="category_id">                        
                         <option value="">Choose Category</option>                        
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{$category->name}} </option>

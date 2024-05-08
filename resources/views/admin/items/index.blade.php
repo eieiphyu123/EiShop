@@ -19,6 +19,7 @@
                         <tr>
                             <th>codeNo</th>
                             <th>Item Nmae</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Discount</th>
                             <th>Instock</th>
@@ -29,6 +30,7 @@
                     <tr>
                             <th>codeNo</th>
                             <th>Item Nmae</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Discount</th>
                             <th>Instock</th>
@@ -40,11 +42,13 @@
                         <tr>
                             <td>{{$item->codeNo}}</td>
                             <td>{{$item->name}}</td>
+                            <!-- item.php မှာ belongsTo(category) သုံးထားလို့ -->
+                            <td>{{$item->category->name}}</td> 
                             <td>{{$item->price}} MMK</td>
                             <td>{{$item->discount}} MMK</td>
                             <td>{{$item->instock}}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{route('backend.items.edit',$item->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                 <button class="btn btn-sm btn-danger delete" type="button" data-id="{{$item->id}}">Delete</button>
                             </td>
                         </tr>

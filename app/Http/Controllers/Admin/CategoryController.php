@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\requests\CategoryRequest;
+use App\Http\requests\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -61,15 +62,33 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // echo $id;
+        $category=Category::find($id);
+        // echo $category;
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryUpdateRequest $request, string $id)
     {
-        //
+        // echo $id;
+        // dd($request);     
+        $category = Category::find($id);
+        $category->update($request->all());
+        if($request->hasfile('new_image')){
+            $fileName = time().'.'.$request->new_image->extension();
+            $upload = $request->new_image->move(public_path('images/'), $fileName);
+            if ($upload){
+                $category->image = "/images/".$fileName;
+            }
+        }else{
+            $category->image = $request->old_image;
+        }
+
+        $category->save();
+        return redirect()->route('backend.categories.index');
     }
 
     /**
@@ -77,6 +96,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        echo $id;
+        // echo $id;
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('backend.categories.index');
     }
 }

@@ -33,15 +33,38 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                    <form class="d-flex" action="{{ route('front.checkout') }}" method="get">
+                        <button type="submit" class="btn btn-outline-dark">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="count_item">0</span>
                         </button>
                     </form>
-                    <a href="/login" class="btn max-3">Login</a>
-                    <a href="/register" class="btn btn-outline-danger">Register</a>
+                    
+                    @guest
+                        <a href="/login" class="btn max-3">Login</a>
+                        <a href="/register" class="btn btn-outline-danger">Register</a>
+                    @else
+                        <div class="nav-item dropdown mx-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{Auth::user()->name}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if(Auth::user()->role=="User")
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                @else
+                                <li><a class="dropdown-item" href="{{route('backend.dashboard')}}">Admin Pannel</a></li>
+                                @endif
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{{route('logout')}}" method="POST" class="dropdown-item">
+                                        @csrf
+                                        <button type="submit" class="btn">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </nav>
@@ -56,5 +79,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{asset('frontend/js/scripts.js')}}"></script>
+        <!-- Add to card Js -->
+        <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
+        <script src="{{asset('frontend/js/addtocart.js')}}"></script>
+        
     </body>
 </html>

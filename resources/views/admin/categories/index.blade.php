@@ -35,7 +35,7 @@
                             <td>{{$category->name}}</td>
                             <td><img src="{{$category->image}}" alt="" class="w-25 h-25"></td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-warning">Edit</button>
+                                <a href="{{route('backend.categories.edit',$category->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$category->id}}">Delete</button>
                             </td>
                         </tr>
@@ -45,28 +45,27 @@
             </div>
         </div>
     </div>
-
     <!-- Delete Modal -->
     <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header bg-danger text-light">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Category</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-light">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <form action="" method="POST" id="deleteForm">
+                        {{csrf_field()}}
+                        {{method_field('delete')}}
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                    </form>            
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            Are you sure?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <form action="" method="POST" id="deleteForm">
-                {{csrf_field()}}
-                {{method_field('delete')}}
-                <button type="submit" class="btn btn-danger">Yes</button>
-            </form>            
-        </div>
-        </div>
-    </div>
     </div>
 @endsection
 
@@ -79,8 +78,7 @@
                 let id=$(this).data('id');
                 // console.log(iid);
 
-                $('#deleteForm').prop('action','categories/'+id)
-
+                $('#deleteForm').prop('action','categories/'+id);
                 $('#DeleteModal').modal('show');
             });
         })

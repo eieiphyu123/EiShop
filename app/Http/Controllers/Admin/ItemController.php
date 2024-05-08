@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\ItemUpdateRequest;
 
 class ItemController extends Controller
 {
@@ -36,12 +37,16 @@ class ItemController extends Controller
     {
         // dd($request);
         $items = Item::create($request->all());
+        // upload image
+
         $fileName = time().'.'.$request->image->extension();
         // dd($fileName);
+        
         $upload = $request->image->move(public_path('images/'), $fileName);
         if ($upload){
             $items->image = "/images/".$fileName;
         }
+
         $items->save(); 
         
         return redirect()->route('backend.items.index');
@@ -60,15 +65,33 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // echo $id;
+        $item=Item::find($id);
+        // dd($item);
+        $categories=Category::all();
+        return view('admin.items.edit',compact('categories','item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ItemUpdateRequest $request, string $id)
     {
-        //
+        // dd($request);
+        // echo $id;
+        $item=Item::find($id);
+        $item->update($request->all());
+        if($request->hasfile('new_image')){
+            $fileName = time().'.'.$request->new_image->extension();
+            $upload = $request->new_image->move(public_path('images/'), $fileName);
+            if ($upload){
+                $item->image = "/images/".$fileName;
+            }
+        }else{
+            $item->image = $request->old_image;
+        }        
+        $item->save();
+        return redirect()->route('backend.items.index');
     }
 
     /**

@@ -14,7 +14,7 @@
                 User DataTable
             </div>
             <div class="card-body">
-                <table id="datatablesSimple">
+                <table id="" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Nmae</th>
@@ -35,7 +35,7 @@
                             <th>Action</th>
                         </tr>
                     </tfoot>
-                    <tbody>
+                    <tbody id="user_tbody">
                         @foreach($users as $user)
                         <tr>
                             <td>{{$user->name}}</td>
@@ -43,12 +43,17 @@
                             <td>{{($user->phone)}}</td>
                             <td>{{($user->address)}}</td>
                             <td>@if($user->role == 1)
-                                    Admin
+                                    Super Admin
                                 @elseif($user->role == 2)
+                                    Admin
+                                @elseif($user->role == 3)
                                     User
                                 @endif
                             </td>
-                            <td></td>
+                            <td>
+                                <a href="{{route('backend.users.edit',$user->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                <button class="btn btn-sm btn-danger delete" data-id="{{$user->id}}">Delete</button>            
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -56,4 +61,40 @@
             </div>
         </div>
     </div>
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you Sure?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+            <form action="" id="deleteForm" method="POST">
+                {{csrf_field()}}
+                {{method_field('delete')}}
+                <button type="submit" class="btn btn-danger">Yes</button>
+            </form>   
+        </div>
+        </div>
+    </div>
+    </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function(){
+        $('#user_tbody').on('click','.delete',function(){
+            // alert('hi');
+            let id=$(this).data('id');
+            // console.log(id);
+            $('#deleteForm').prop('action','users/'+id);
+            $("#deleteModal").modal('show');
+        })
+    })
+</script>
 @endsection

@@ -11,6 +11,8 @@
                     <div class="col-md-6">
                         <div class="small mb-1">Code No:{{$item->codeNo}}</div>
                         <h1 class="display-5 fw-bolder">{{$item->name}}</h1>
+                        <!--  -->
+                        <a href="{{route('items.category',$item->category_id)}}" class="text-decoration-none badge text-bg-primary">{{$item->category->name}}</a>
                         <div class="fs-5 mb-5">
                             <span class="text-decoration-line-through">{{$item->price}}</span>
                             <span>{{$item->discount}}</span>

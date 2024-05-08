@@ -35,7 +35,7 @@
                             <td>{{$payment->name}}</td>
                             <td><img src="{{$payment->image}}" alt="" class="w-25 h-25"></td>     
                             <td>
-                                <button type="" class="btn btn-sm btn-warning">Edit</button>
+                                <a href="{{route('backend.payments.edit',$payment->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                 <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$payment->id}}">Delete</button>
                             </td>                                       
                         </tr>
@@ -74,13 +74,10 @@
     $(document).ready(function(){
         $('#payment_tbody').on('click','.delete',function(){
             // alert('hi');
-
+            let id=$(this).data('id');
+            // console.log(id);            
+            $('#deleteForm').prop('action', 'payments/' + id);
             $('#deleteModal').modal('show');
-
-           let id=$(this).data('id');
-            // console.log(id);
-            
-            $('#deleteForm').porp('action', 'payments/' + id);
         })
     })
 </script>
