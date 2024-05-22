@@ -45,7 +45,12 @@
                                         <!-- Product name-->
                                         <h5 class="fw-bolder">{{$item->name}}</h5>
                                         <!-- Product price-->
-                                        {{$item->price}} MMK
+                                        @if($item->discount == 0)                         
+                                            <span >{{$item->price}} Ks</span>
+                                        @else
+                                            <span class="text-decoration-line-through text-danger">{{$item->price}} Ks</span>
+                                            <span>{{$item->price - (($item->discount/100)*$item->price)}} Ks</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Product actions-->
@@ -55,9 +60,16 @@
                                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('front.show',$item->id)}}">View</a></div>
                                         </div>
                                         <div class="col-md-8">
-                                            <div class="text-center">
-                                                <button class="btn btn-outline-dark mt-auto addToCart" data-id="{{$item->id}}" data-codeno="{{$item->codeNo}}" data-name="{{$item->name}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">Add to Cart</button>
-                                            </div>
+                                            @if($item->instock == '1')
+                                                <div class="text-center">
+                                                <input type="hidden" value="1" class="qty">
+                                                    <button class="btn btn-outline-dark mt-auto addToCart" data-id="{{$item->id}}" data-codeno="{{$item->codeNo}}" data-name="{{$item->name}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">Add to Cart</button>
+                                                </div>
+                                            @else
+                                                <div class="text-center">
+                                                    <a class="btn btn-primary mt-auto">Out of Stock</a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>                                    
                                 </div>

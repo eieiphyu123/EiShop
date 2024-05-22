@@ -57,7 +57,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>                            
+                            <div class="sb-sidenav-menu-heading">Interface</div>      
+                            <a class="nav-link" href="{{route('backend.orders.index')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Orders
+                            </a>                      
                             <a class="nav-link" href="{{route('backend.items.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Items

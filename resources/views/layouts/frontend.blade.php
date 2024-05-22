@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Shop Homepage - Start Bootstrap Template</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -12,6 +13,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('frontend/css/styles.css')}}" rel="stylesheet" />
+        <!-- Splide Slider Link -->
+        <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     </head>
     <body>
         <!-- Navigation-->
@@ -33,12 +36,12 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" action="{{ route('front.checkout') }}" method="get">
-                        <button type="submit" class="btn btn-outline-dark">
+                    <form class="d-flex">
+                        <a href="{{ route('front.checkout') }}" class="btn btn-outline-dark">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                             <span class="badge bg-dark text-white ms-1 rounded-pill" id="count_item">0</span>
-                        </button>
+                        </a>
                     </form>
                     
                     @guest
@@ -79,9 +82,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{asset('frontend/js/scripts.js')}}"></script>
+
         <!-- Add to card Js -->
         <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
         <script src="{{asset('frontend/js/addtocart.js')}}"></script>
-        
+
+        <!-- Splide Js -->
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+        <script src="{{asset('frontend/js/splide.js')}}"></script>
+
+        @yield('script')
     </body>
 </html>

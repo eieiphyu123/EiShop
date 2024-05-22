@@ -19,15 +19,26 @@ Route::get('items/category/{id}',[App\Http\Controllers\FrontendController::class
 
 Route::get('checkout/', [App\Http\Controllers\FrontendController::class, 'checkout'])->name('front.checkout');
 
+Route::post('orderNow', [App\Http\Controllers\FrontendController::class, 'orderNow'])->name('orderNow');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //backend အတွက် group 
 Route::group(['middleware'=>['auth','role:Super Admin|Admin'],'prefix'=>'backend','as'=>'backend.'],function(){
+
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('items',App\Http\Controllers\Admin\ItemController::class);
     Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('payments',App\Http\Controllers\Admin\PaymentController::class);
     Route::resource('users',App\Http\Controllers\Admin\UserController::class);
+
+    Route::get('orders',[App\Http\Controllers\Admin\orderController::class, 'index'])->name('orders.index');
+    Route::get('orderAccept',[App\Http\Controllers\Admin\orderController::class, 'orderAccept'])->name('orders.accept');
+    Route::get('orderComplete',[App\Http\Controllers\Admin\orderController::class, 'orderComplete'])->name('orders.comptete');
+
+    Route::get('orders/{voucherNo}',[App\Http\Controllers\Admin\orderController::class, 'detail'])->name('orders.detail');
+    Route::put('orders/{voucherNo}',[App\Http\Controllers\Admin\orderController::class, 'status'])->name('orders.status');
+    
 });

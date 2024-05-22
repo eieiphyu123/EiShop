@@ -9,14 +9,15 @@ $(document).ready(function(){
         let item_codeno=$(this).data('codeno');
         let item_price=$(this).data('price');
         let item_discount=$(this).data('discount');
-        console.log(item_id,item_name,item_price,item_codeno,item_discount);
+        let qty = $('.qty').val();
+        // console.log(item_id,item_name,item_price,item_codeno,item_discount);
         let itemObj={
             id: item_id,
             name: item_name,
             codeno: item_codeno,
             price: item_price,
             discount: item_discount,
-            qty:1
+            qty: qty
         }
         
         let itemString=localStorage.getItem('shopItems');
@@ -30,7 +31,7 @@ $(document).ready(function(){
         let status=false; // item ၁ခုကို ၂ခါ click လျင် qty ကိုပဲ count ၁ တို့းမယ်
         $.each(itemArray, function(i,v){
             if(item_id==v.id){
-                v.qty++;
+                v.qty = Number(v.qty)+Number(qty);
                 status=true;
             }
         })
