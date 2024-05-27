@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Models\Payment;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -71,4 +72,18 @@ class FrontendController extends Controller
       }
       return "Your Order Successful";
    }
+
+   public function profileDetail($id){
+      $user = User::find($id);
+      // dd($user);
+      return view('frontend.profile', compact('user'));
+   }
+   
+   public function profileupdate(Request $request, $id){
+      $user=User::find($id);
+      $user->update($request->all());             
+      $user->save();
+      return redirect()->route('profile.detail', $id);
+   }
+
 }

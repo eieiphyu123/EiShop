@@ -34,62 +34,8 @@
                 </div>
             </div>
         </div>
-    </section>
-    
-    
-    <!-- Related items section-->
-    <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder mb-4">Related products</h2>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
-                @foreach($items as $item)   
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{$item->image}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{$item->name}}</h5>
-                                    <!-- Product price-->
-                                    @if($item->discount == 0)                         
-                                        <span >{{$item->price}} Ks</span>
-                                    @else
-                                        <span class="text-decoration-line-through text-danger">{{$item->price}} Ks</span>
-                                        <span>{{$item->price - (($item->discount/100)*$item->price)}} Ks</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('front.show',$item->id)}}">View</a></div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="text-center">
-                                            @if($item->instock == '1')
-                                                <div class="text-center">
-                                                <input type="hidden" value="1" class="qty">
-                                                    <button class="btn btn-outline-dark mt-auto addToCart" data-id="{{$item->id}}" data-codeno="{{$item->codeNo}}" data-name="{{$item->name}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">Add to Cart</button>
-                                                </div>
-                                            @else
-                                                <div class="text-center">
-                                                    <a class="btn btn-primary mt-auto">Out of Stock</a>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>                                    
-                            </div>
-                        </div>    
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
+    </section>  
+        
     <!-- Splide Related Items -->
     <section class="py-5 bg-light">    
         <div class="splide container px-4 px-lg-5 mt-5">

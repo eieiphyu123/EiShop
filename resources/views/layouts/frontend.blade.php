@@ -20,19 +20,28 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Ei Shop</a>
+                <a class="navbar-brand" href="{{route('front.index')}}">Ei Shop</a>
+                <img src="{{ asset('images/euroBitesLogo.jpg') }}" alt="Logo" class="img-fluid " style="max-width:100px;">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route('front.index')}}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><a class="dropdown-item" href="#!">All Categories</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                @php
+                                    $categories = \App\Models\Category::all();
+                                @endphp
+                                @foreach($categories as $category)
+                                <li>
+                                    <a href="{{route('items.category',$category->id)}}" class="dropdown-item">
+                                        {{$category->name}}
+                                    </a>
+                                </li>
+                                @endforeach
                             </ul>
                         </li>
                     </ul>
@@ -54,7 +63,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @if(Auth::user()->role=="User")
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{route('profile.detail',Auth::user()->id)}}">Profile</a></li>
                                 @else
                                 <li><a class="dropdown-item" href="{{route('backend.dashboard')}}">Admin Pannel</a></li>
                                 @endif

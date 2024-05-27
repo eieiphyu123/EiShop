@@ -55,9 +55,9 @@
                 <label for="role" class="form-label">Role</label>
                 <select class="form-select {{$errors->has('role') ? 'is-invalid' : ''}}" name="role" id="role" aria-label="Select Role">
                     <option selected>Select Role</option>
-                    <option value="Super Admin" {{$user->role==Super Admin?'selected':''}}>Super Admin</option>
-                    <option value="Admin" {{$user->role==Admin?'selected':''}}>Admin</option>
-                    <option value="User" {{$user->role==User?'selected':''}}>User</option>
+                    <option value="Super Admin" {{$user->role== 'Super Admin' ?'selected' : ''}}>Super Admin</option>
+                    <option value="Admin" {{$user->role== 'Admin' ? 'selected' : ''}}>Admin</option>
+                    <option value="User" {{$user->role== 'User' ? 'selected' : ''}}>User</option>
                 </select>
                 @if($errors->has('role'))
                     <div class="invalid-feedback">{{$errors->first('role')}}</div>

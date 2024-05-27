@@ -21,6 +21,9 @@ Route::get('checkout/', [App\Http\Controllers\FrontendController::class, 'checko
 
 Route::post('orderNow', [App\Http\Controllers\FrontendController::class, 'orderNow'])->name('orderNow');
 
+Route::get('profile/details/{user}', [App\Http\Controllers\FrontendController::class, 'profileDetail'])->name('profile.detail');
+Route::put('profile/update/{user}', [App\Http\Controllers\FrontendController::class, 'profileupdate'])->name('profile.update');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
