@@ -41,14 +41,14 @@ class ItemController extends Controller
 
         $fileName = time().'.'.$request->image->extension();
         // dd($fileName);
-        
+
         $upload = $request->image->move(public_path('images/'), $fileName);
         if ($upload){
             $items->image = "/images/".$fileName;
         }
 
-        $items->save(); 
-        
+        $items->save();
+
         return redirect()->route('backend.items.index');
     }
 
@@ -75,6 +75,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(ItemUpdateRequest $request, string $id)
     {
         // dd($request);
@@ -89,7 +90,7 @@ class ItemController extends Controller
             }
         }else{
             $item->image = $request->old_image;
-        }        
+        }
         $item->save();
         return redirect()->route('backend.items.index');
     }

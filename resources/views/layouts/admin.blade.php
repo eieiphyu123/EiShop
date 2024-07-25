@@ -6,12 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>EI SHOP - Admin Dashboard</title>
         <link href="{{asset('admin/css/styles.min.css')}}" rel="stylesheet" />
         <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
-        <script src="{{asset('admin/js/all.js')}}" crossorigin="anonymous"></script>
-        <!-- getbootstrap.com မှ Delete modal သုံးချင်လို့ jQuery.CDN မှ minised ကို copy past လုပ်ရတာ -->
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -104,13 +102,18 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <!-- getbootstrap.com မှ Delete modal သုံးချင်လို့ jQuery.CDN မှ minised ကို copy past လုပ်ရတာ -->
+        <script src="{{asset('admin/js/jquery.min.js')}}"></script>
+
+        <script src="{{asset('admin/js/all.js')}}" ></script>
+        <script src="{{asset('admin/js/bootstrap.bundle.min.js')}}" ></script>
         <script src="{{asset('admin/js/scripts.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> --}}
         <script src="{{asset('admin/assets/demo/chart-area-demo.js')}}"></script>
         <script src="{{asset('admin/assets/demo/chart-bar-demo.js')}}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="{{asset('admin/js/simple-datatables.min.js')}}"></script>
         <script src="{{asset('admin/js/datatables-simple-demo.js')}}"></script>
+
         @yield('script')
     </body>
 </html>

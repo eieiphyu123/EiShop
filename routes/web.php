@@ -45,3 +45,7 @@ Route::group(['middleware'=>['auth','role:Super Admin|Admin'],'prefix'=>'backend
     Route::put('orders/{voucherNo}',[App\Http\Controllers\Admin\orderController::class, 'status'])->name('orders.status');
 
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

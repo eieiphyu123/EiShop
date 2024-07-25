@@ -10,11 +10,11 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="{{asset('frontend/css/bootstrap-icons.css')}}" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('frontend/css/styles.css')}}" rel="stylesheet" />
         <!-- Splide Slider Link -->
-        <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+        <link href="{{asset('frontend/css/splide.min.css')}}" rel="stylesheet">
     </head>
     <body>
         <!-- Navigation-->
@@ -52,7 +52,7 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill" id="count_item">0</span>
                         </a>
                     </form>
-                    
+
                     @guest
                         <a href="/login" class="btn max-3">Login</a>
                         <a href="/register" class="btn btn-outline-danger">Register</a>
@@ -82,13 +82,13 @@
         </nav>
 
         @yield('content')
-        
+
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{asset('admin/js/bootstrap.bundle.min.js')}}"></script>
         <!-- Core theme JS-->
         <script src="{{asset('frontend/js/scripts.js')}}"></script>
 
@@ -97,7 +97,7 @@
         <script src="{{asset('frontend/js/addtocart.js')}}"></script>
 
         <!-- Splide Js -->
-        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+        <script src="{{asset('frontend/js/splide.min.js')}}"></script>
         <script src="{{asset('frontend/js/splide.js')}}"></script>
 
         @yield('script')

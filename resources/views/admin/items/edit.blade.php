@@ -28,14 +28,39 @@
                         </div>
                     @endif
                 </div>
-                <div class="mb-3">                    
+                {{-- Image --}}
+                <div class="mb-3">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="old_image-tab" data-bs-toggle="tab" data-bs-target="#old_image-tab-pane" type="button" role="tab" aria-controls="old_image-tab-pane" aria-selected="true">Old Image</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="new_image-tab" data-bs-toggle="tab" data-bs-target="#new_image-tab-pane" type="button" role="tab" aria-controls="new_image-tab-pane" aria-selected="false">New Image</button>
-                        </li>                        
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="old_image-tab-pane" role="tabpanel" aria-labelledby="old_image-tab" tabindex="0">
+                            <img src="{{ $item->image }}" alt="" class="w-25 h-25 my-3">
+                            <input type="hidden" name="old_image" value="{{ $item->image }}">
+                        </div>
+                        <div class="tab-pane fade" id="new_image-tab-pane" role="tabpanel" aria-labelledby="new_image-tab" tabindex="0">
+                            <input type="file" accept="image/*" class="form-control {{ $errors->has('new_image') ? 'is-invalid' : '' }}" name="new_image" id="new_image">
+                            @if ($errors->has('new_image'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('new_image') }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="mb-3">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="old_image-tab" data-bs-toggle="tab" data-bs-target="#old_image-tab-pane" type="button" role="tab" aria-controls="old_image-tab-pane" aria-selected="true">Old Image</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="new_image-tab" data-bs-toggle="tab" data-bs-target="#new_image-tab-pane" type="button" role="tab" aria-controls="new_image-tab-pane" aria-selected="false">New Image</button>
+                        </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="old_image-tab-pane" role="tabpanel" aria-labelledby="old_image-tab" tabindex="0">
@@ -45,9 +70,9 @@
                         </div>
                         <div class="tab-pane fade" id="new_image-tab-pane" role="tabpanel" aria-labelledby="new_image-tab" tabindex="0">
                             <input type="file" accept="image/*" class="form-control" name="new_image" id="new_image">
-                        </div>                        
+                        </div>
                     </div>
-                </div>        
+                </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
                     <input type="text" class="form-control {{$errors->has('price') ?  'is-invalid' :''}}" name="price" id="price" value="{{$item->price}}">
@@ -56,7 +81,8 @@
                             {{$errors->first('price')}}
                         </div>
                     @endif
-                </div>
+                </div> --}}
+                {{-- Discount --}}
                 <div class="mb-3">
                     <label for="discount" class="form-label">Discount</label>
                     <input type="text" class="form-control {{$errors->has('discount') ?  'is-invalid' :''}}" name="discount" id="discount" value="{{$item->discount}}">
@@ -67,8 +93,8 @@
                     @endif
                 </div>
                 <div class="mb-3">
-                    <label for="instock" class="form-label">InStock</label>                    
-                    <select class="form-select {{$errors->has('instock') ?  'is-invalid' :''}}" name="instock" value="">                    
+                    <label for="instock" class="form-label">InStock</label>
+                    <select class="form-select {{$errors->has('instock') ?  'is-invalid' :''}}" name="instock" value="">
                         <option value="1" {{$item->instock==1?'selected':''}} selected>Yes</option>
                         <option value="0" {{$item->instock==0?'selected':''}}>No</option>
                     </select>
@@ -80,8 +106,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <select class="form-select {{$errors->has('category_id') ?  'is-invalid' :''}}" name="category_id">                        
-                        <option value="">Select Category</option>                        
+                    <select class="form-select {{$errors->has('category_id') ?  'is-invalid' :''}}" name="category_id">
+                        <option value="">Select Category</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}" {{$item->category_id==$category->id ? 'selected' : ''}}>{{$category->name}} </option>
                         @endforeach
@@ -106,6 +132,6 @@
                 </div>
             </form>
         </div>
-    </div>    
+    </div>
 </div>
 @endsection
