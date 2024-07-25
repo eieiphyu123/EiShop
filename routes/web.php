@@ -28,7 +28,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//backend အတွက် group 
+//backend အတွက် group
 Route::group(['middleware'=>['auth','role:Super Admin|Admin'],'prefix'=>'backend','as'=>'backend.'],function(){
 
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
@@ -43,5 +43,5 @@ Route::group(['middleware'=>['auth','role:Super Admin|Admin'],'prefix'=>'backend
 
     Route::get('orders/{voucherNo}',[App\Http\Controllers\Admin\orderController::class, 'detail'])->name('orders.detail');
     Route::put('orders/{voucherNo}',[App\Http\Controllers\Admin\orderController::class, 'status'])->name('orders.status');
-    
+
 });

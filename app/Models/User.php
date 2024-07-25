@@ -30,6 +30,10 @@ class User extends Authenticatable
         'role'
     ];
 
+    public function hasRole($role)
+{
+    return $this->role === $role; // Replace 'role' with your actual column name for roles
+}
     /**
      * The attributes that should be hidden for serialization.
      *
